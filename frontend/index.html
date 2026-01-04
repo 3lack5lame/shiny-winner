@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#2b6cb0" />
+  <link rel="manifest" href="manifest.json" />
+  <title>GraceChMS — Frontend Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Fonts & Icons (reference assets) -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <!-- Tailwind CDN (reference style) -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'primary': '#137fec', 'background-light': '#f6f7f8','background-dark': '#101922' }, fontFamily: { display: ['Inter','sans-serif'] }, borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', full: '9999px' } } } }</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">GraceChMS</div>
+    <button id="nav-toggle" class="hamburger" aria-label="Toggle navigation">☰</button>
+    <nav class="nav" role="navigation" aria-label="Main">
+      <!-- Website-conventional nav: root + primary pages mapped to reference pages -->
+      <a href="#/" data-route>Landing</a>
+      <a href="#/members" data-route>Members</a>
+      <a href="#/attendance" data-route>Attendance</a>
+      <a href="#/events" data-route>Events</a>
+      <a href="#/giving" data-route>Giving</a>
+      <a href="#/profile" data-route>Profile</a>
+      <a href="#/kiosk" data-route>Kiosk</a>
+      <a href="#/online-giving" data-route>Online Giving</a>
+      <div class="ref-menu">
+        <button class="ref-toggle" aria-haspopup="true" aria-expanded="false">References ▾</button>
+        <div class="ref-dropdown" role="menu">
+          <a href="#/reference/admin_dashboard" data-route role="menuitem">Admin Dashboard (raw)</a>
+          <a href="#/reference/member_directory" data-route role="menuitem">Member Directory (raw)</a>
+          <a href="#/reference/event_creation_and_management" data-route role="menuitem">Event Mgmt (raw)</a>
+          <a href="#/reference/giving_and_financial_reports" data-route role="menuitem">Giving Reports (raw)</a>
+          <a href="#/reference/attendance_tracking_admin" data-route role="menuitem">Attendance Admin (raw)</a>
+          <a href="#/reference/individual_member_profile" data-route role="menuitem">Member Profile (raw)</a>
+          <a href="#/reference/online_giving_portal_member" data-route role="menuitem">Online Giving (raw)</a>
+          <a href="#/reference/child_check_in_kiosk" data-route role="menuitem">Child Check-in Kiosk (raw)</a>
+          <a href="#/reference/gracechms_landing_page" data-route role="menuitem">Landing Page (raw)</a>
+        </div>
+      </div>
+    </nav>
+    <div class="user">
+      <button id="btn-login">Sign In</button>
+    </div>
+  </header>
+
+  <main id="app" class="container">
+    <!-- SPA content injected here -->
+  </main>
+
+  <footer class="footer">
+    &copy; <span id="year"></span> GraceChMS prototype
+  </footer>
+
+  <template id="tmpl-dashboard">
+    <section class="p-4 md:p-8">
+      <div class="max-w-7xl mx-auto flex flex-col gap-6">
+        <div class="flex flex-col gap-1">
+          <h2 class="text-2xl font-bold">Dashboard</h2>
+          <p class="text-sm text-gray-500">Welcome back, Admin - Grace Community Church</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-6 bg-white rounded-xl border shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <p class="text-sm text-gray-500">Total Members</p>
+              <span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">group</span>
+            </div>
+            <p class="text-2xl font-bold" id="members-count">—</p>
+            <p class="text-xs text-gray-500 mt-2">+12% this month</p>
+          </div>
+          <div class="p-6 bg-white rounded-xl border shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <p class="text-sm text-gray-500">Sunday Attendance</p>
+              <span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">event_seat</span>
+            </div>
+            <p class="text-2xl font-bold" id="attendance-count">—</p>
+            <p class="text-xs text-gray-500 mt-2">vs last week</p>
+          </div>
+          <div class="p-6 bg-white rounded-xl border shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <p class="text-sm text-gray-500">Giving (MTD)</p>
+              <span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">attach_money</span>
+            </div>
+            <p class="text-2xl font-bold" id="giving-total">—</p>
+            <p class="text-xs text-gray-500 mt-2">Recent donations</p>
+          </div>
+          <div class="p-6 bg-white rounded-xl border shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <p class="text-sm text-gray-500">Active Small Groups</p>
+              <span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">diversity_3</span>
+            </div>
+            <p class="text-2xl font-bold" id="groups-count">—</p>
+            <p class="text-xs text-gray-500 mt-2">Manage small groups</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
+          <div class="lg:col-span-2 p-6 bg-white rounded-xl border shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <div>
+                <h3 class="text-lg font-bold">Giving Trends</h3>
+                <p class="text-sm text-gray-500">Last 6 Months</p>
+              </div>
+              <p class="text-2xl font-bold">$—</p>
+            </div>
+            <div class="min-h-[180px]">
+              <svg class="w-full h-full" viewBox="0 0 500 150" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#137fec" stop-opacity="0.2"></stop>
+                    <stop offset="100%" stop-color="#137fec" stop-opacity="0"></stop>
+                  </linearGradient>
+                </defs>
+                <path d="M0,120 Q50,100 100,110 T200,80 T300,60 T400,90 T500,40 V150 H0 Z" fill="url(#chartGradient)"></path>
+                <path d="M0,120 Q50,100 100,110 T200,80 T300,60 T400,90 T500,40" fill="none" stroke="#137fec" stroke-width="3"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="p-6 bg-white rounded-xl border shadow-sm">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="text-base font-bold">Upcoming Events</h3>
+              <button class="text-primary text-sm">View All</button>
+            </div>
+            <ul id="upcoming-events" class="list"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <template id="tmpl-members">
+    <section>
+      <div class="toolbar">
+        <input id="member-search" placeholder="Search members (name, tag)" />
+        <div>
+          <button id="btn-import">Import CSV</button>
+          <button id="btn-export">Export CSV</button>
+          <button id="btn-add-member">Add Member</button>
+        </div>
+      </div>
+      <ul id="members-list" class="list"></ul>
+    </section>
+  </template>
+
+  <template id="tmpl-attendance">
+    <section>
+      <h2>Check-in</h2>
+      <div class="attendance-panel">
+        <div class="checkin-form">
+          <input id="chk-search" placeholder="Search by name or phone" />
+          <button id="btn-checkin">Check In</button>
+        </div>
+        <div class="attendance-log">
+          <h3>Today's attendees</h3>
+          <ul id="attendance-list" class="list"></ul>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <template id="tmpl-giving">
+    <section>
+      <h2>Give</h2>
+      <form id="give-form" class="form">
+        <label>Amount (USD)
+          <input type="number" id="donation-amount" min="1" step="1" required />
+        </label>
+        <label>Name
+          <input id="donor-name" />
+        </label>
+        <label>Fund
+          <select id="donation-fund"><option value="general">General</option><option value="missions">Missions</option></select>
+        </label>
+        <button type="submit" class="btn primary">Give (Simulate)</button>
+      </form>
+      <div id="donation-receipts"></div>
+    </section>
+  </template>
+
+  <!-- Events -->
+  <template id="tmpl-events">
+    <section>
+      <div class="toolbar">
+        <input id="event-search" placeholder="Search events" />
+        <div>
+          <button id="btn-new-event">New Event</button>
+        </div>
+      </div>
+      <ul id="events-list" class="list"></ul>
+    </section>
+  </template>
+
+  <template id="tmpl-event-detail">
+    <section>
+      <h2 id="event-title">Event</h2>
+      <p id="event-desc"></p>
+      <div id="event-meta" class="muted"></div>
+      <div style="margin-top:.75rem"><button id="btn-event-register" class="btn primary">Register</button></div>
+    </section>
+  </template>
+
+  <!-- Groups -->
+  <template id="tmpl-groups">
+    <section>
+      <div class="toolbar">
+        <input id="group-search" placeholder="Search groups" />
+        <div><button id="btn-new-group">New Group</button></div>
+      </div>
+      <ul id="groups-list" class="list"></ul>
+    </section>
+  </template>
+
+  <!-- Volunteers -->
+  <template id="tmpl-volunteers">
+    <section>
+      <div class="toolbar">
+        <input id="vol-search" placeholder="Search volunteers" />
+        <div><button id="btn-new-vol">Add Volunteer</button></div>
+      </div>
+      <ul id="vols-list" class="list"></ul>
+    </section>
+  </template>
+
+  <!-- Service Planning -->
+  <template id="tmpl-service">
+    <section>
+      <h2>Service Planner</h2>
+      <p class="muted">Create service plans, assign teams, and export.</p>
+      <div class="card">
+        <button id="btn-new-plan" class="btn">New Plan</button>
+      </div>
+    </section>
+  </template>
+
+  <!-- Reports -->
+  <template id="tmpl-reports">
+    <section>
+      <h2>Reports</h2>
+      <div class="card">
+        <button id="btn-attendance-report" class="btn">Attendance Report (CSV)</button>
+        <button id="btn-giving-report" class="btn">Giving Report (CSV)</button>
+      </div>
+    </section>
+  </template>
+
+  <!-- Profile -->
+  <template id="tmpl-profile">
+    <section>
+      <h2>My Profile</h2>
+      <div id="profile-body"></div>
+    </section>
+  </template>
+
+  <!-- Login -->
+  <template id="tmpl-login">
+    <section>
+      <h2>Sign In</h2>
+      <form id="login-form" class="form">
+        <label>Email<input id="login-email" /></label>
+        <label>Password<input id="login-password" type="password" /></label>
+        <button class="btn primary" type="submit">Sign In</button>
+      </form>
+    </section>
+  </template>
+
+  <!-- Settings -->
+  <template id="tmpl-settings">
+    <section>
+      <h2>Settings</h2>
+      <div class="card">Organization & Billing settings (placeholder)</div>
+    </section>
+  </template>
+
+  <!-- Kiosk -->
+  <template id="tmpl-kiosk">
+    <section>
+      <h2>Check-in Kiosk</h2>
+      <p class="muted">Simplified kiosk interface for in-person check-in.</p>
+      <div class="card"><button id="kiosk-checkin" class="btn primary">Scan / Check In</button></div>
+    </section>
+  </template>
+
+  <!-- Background Checks -->
+  <template id="tmpl-backgrounds">
+    <section>
+      <h2>Background Checks</h2>
+      <div id="background-list" class="list"></div>
+    </section>
+  </template>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
+    <div class="modal-inner">
+      <button id="modal-close" class="modal-close">×</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

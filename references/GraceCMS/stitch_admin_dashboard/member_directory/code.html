@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Member Directory - ChurchMate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for table if needed */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white overflow-x-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f4] dark:border-b-gray-800 bg-white dark:bg-[#111418] px-10 py-3 shadow-sm">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-[#111418] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">ChurchMate</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">People</a>
+<a class="text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Groups</a>
+<a class="text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Giving</a>
+<a class="text-[#617589] dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Check-in</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-[#111418] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white dark:border-gray-700 shadow-sm cursor-pointer" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7sHKzXXflapQrpWAMUfR_H8kS0LD8G9TOm-xJBKlM9gbADUvjyHg3p3O4gTQG9MXAh6nzV40_xpesC5twbE7x7manRqjypkaK5z5EH3gCNgowqWOT0u4d1J3WN-Nhe6s3wkoqFe0ttA9qcxPmvC5mPjeMZGKI3rVDoYSyCTruyThXHnNvIBH43j46EWmhbe1rBwPWC7kF51gI6C2xPFntHMAYgjQb1g6uXzWCIo8i3FZQxV3bYzS7xbRdzHDDvlD-znw5P3x4P1w");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="layout-container flex h-full grow flex-col bg-background-light dark:bg-background-dark">
+<div class="mx-auto w-full max-w-[1440px] px-4 md:px-10 py-5">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 px-4 py-2 mb-2">
+<a class="text-[#617589] dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary" href="#">Home</a>
+<span class="text-[#617589] dark:text-gray-500 text-sm font-medium leading-normal">/</span>
+<a class="text-[#617589] dark:text-gray-400 text-sm font-medium leading-normal hover:text-primary" href="#">People</a>
+<span class="text-[#617589] dark:text-gray-500 text-sm font-medium leading-normal">/</span>
+<span class="text-[#111418] dark:text-white text-sm font-medium leading-normal">Directory</span>
+</div>
+<!-- Page Heading & Actions -->
+<div class="flex flex-wrap items-end justify-between gap-4 px-4 pb-6">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111418] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Member Directory</h1>
+<p class="text-[#617589] dark:text-gray-400 text-sm font-normal leading-normal">Manage church members, visitors, and families.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<button class="flex h-10 items-center justify-center gap-2 rounded-lg border border-[#e5e7eb] dark:border-gray-700 bg-white dark:bg-[#1e293b] px-4 text-sm font-bold text-[#111418] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-[20px]">file_upload</span>
+<span>Import</span>
+</button>
+<button class="flex h-10 items-center justify-center gap-2 rounded-lg border border-[#e5e7eb] dark:border-gray-700 bg-white dark:bg-[#1e293b] px-4 text-sm font-bold text-[#111418] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+<span>Export</span>
+</button>
+<button class="flex h-10 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-bold text-white hover:bg-blue-600 shadow-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span>Add Member</span>
+</button>
+</div>
+</div>
+<!-- Layout Split: Filters & Table -->
+<div class="flex flex-col lg:flex-row gap-6 px-4">
+<!-- Sidebar: Filters & Segments -->
+<aside class="w-full lg:w-64 flex-shrink-0 flex flex-col gap-6">
+<!-- Saved Segments -->
+<div class="flex flex-col rounded-xl border border-[#e5e7eb] dark:border-gray-700 bg-white dark:bg-[#1e293b] shadow-sm overflow-hidden">
+<div class="border-b border-[#f0f2f4] dark:border-gray-700 p-4">
+<h3 class="text-[#111418] dark:text-white text-base font-bold">Saved Segments</h3>
+</div>
+<div class="flex flex-col p-2">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-400 text-[20px]">star</span>
+<span class="text-[#111418] dark:text-gray-200 text-sm font-medium">New Donors</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined text-primary text-[20px]">group</span>
+<span class="text-sm font-bold">Youth Leaders</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-400 text-[20px]">child_care</span>
+<span class="text-[#111418] dark:text-gray-200 text-sm font-medium">Children's Ministry</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-[#f0f2f4] dark:hover:bg-gray-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-gray-400 text-[20px]">person_off</span>
+<span class="text-[#111418] dark:text-gray-200 text-sm font-medium">Inactive &gt; 6mo</span>
+</a>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex flex-col rounded-xl border border-[#e5e7eb] dark:border-gray-700 bg-white dark:bg-[#1e293b] shadow-sm overflow-hidden">
+<div class="border-b border-[#f0f2f4] dark:border-gray-700 p-4 flex justify-between items-center">
+<h3 class="text-[#111418] dark:text-white text-base font-bold">Filters</h3>
+<button class="text-xs text-primary font-medium hover:underline">Clear All</button>
+</div>
+<!-- Membership Status -->
+<div class="border-b border-[#f0f2f4] dark:border-gray-700 p-4">
+<p class="mb-3 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Status</p>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm font-medium text-[#111418] dark:text-gray-200 group-hover:text-primary transition-colors">Member</span>
+<span class="ml-auto text-xs text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">840</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm font-medium text-[#111418] dark:text-gray-200 group-hover:text-primary transition-colors">Visitor</span>
+<span class="ml-auto text-xs text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">120</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm font-medium text-[#111418] dark:text-gray-200 group-hover:text-primary transition-colors">Inactive</span>
+<span class="ml-auto text-xs text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full">45</span>
+</label>
+</div>
+</div>
+<!-- Campus -->
+<div class="border-b border-[#f0f2f4] dark:border-gray-700 p-4">
+<p class="mb-3 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Campus</p>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm font-medium text-[#111418] dark:text-gray-200 group-hover:text-primary transition-colors">North Campus</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm font-medium text-[#111418] dark:text-gray-200 group-hover:text-primary transition-colors">South Campus</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm font-medium text-[#111418] dark:text-gray-200 group-hover:text-primary transition-colors">Online</span>
+</label>
+</div>
+</div>
+<!-- Age Group -->
+<div class="p-4">
+<p class="mb-3 text-xs font-bold uppercase tracking-wider text-[#617589] dark:text-gray-400">Age Group</p>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm font-medium text-[#111418] dark:text-gray-200 group-hover:text-primary transition-colors">Children (0-12)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm font-medium text-[#111418] dark:text-gray-200 group-hover:text-primary transition-colors">Youth (13-18)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm font-medium text-[#111418] dark:text-gray-200 group-hover:text-primary transition-colors">Adults (19+)</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Table Area -->
+<main class="flex-1 min-w-0">
+<div class="flex flex-col rounded-xl border border-[#e5e7eb] dark:border-gray-700 bg-white dark:bg-[#1e293b] shadow-sm">
+<!-- Toolbar & Search -->
+<div class="flex flex-col sm:flex-row items-center gap-4 p-4 border-b border-[#f0f2f4] dark:border-gray-700">
+<div class="relative w-full sm:max-w-md">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-symbols-outlined text-[#617589]">search</span>
+</div>
+<input class="block w-full p-2.5 pl-10 text-sm text-[#111418] dark:text-white bg-[#f0f2f4] dark:bg-gray-800 border-none rounded-lg focus:ring-2 focus:ring-primary placeholder:text-[#617589] dark:placeholder:text-gray-500" placeholder="Search by name, email, or phone number..." type="text"/>
+</div>
+<div class="flex items-center gap-2 ml-auto w-full sm:w-auto justify-end">
+<span class="text-sm text-gray-500 dark:text-gray-400">Sort by:</span>
+<select class="bg-transparent text-sm font-medium text-[#111418] dark:text-white border-none focus:ring-0 cursor-pointer pr-8">
+<option>Last Name (A-Z)</option>
+<option>Last Name (Z-A)</option>
+<option>Newest Added</option>
+<option>Last Attended</option>
+</select>
+</div>
+</div>
+<!-- Bulk Action Banner (Hidden by default, shown here for visual context) -->
+<!--
+                            <div class="bg-primary/10 px-4 py-2 flex items-center justify-between border-b border-primary/20">
+                                <span class="text-sm font-medium text-primary">2 members selected</span>
+                                <div class="flex gap-2">
+                                    <button class="text-xs font-bold text-primary hover:underline">Email</button>
+                                    <button class="text-xs font-bold text-primary hover:underline">Tag</button>
+                                </div>
+                            </div>
+                            -->
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#f9fafb] dark:bg-[#111418] border-b border-[#e5e7eb] dark:border-gray-700">
+<th class="p-4 w-10">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+</th>
+<th class="p-4 text-xs font-medium uppercase tracking-wider text-[#617589] dark:text-gray-400">Name</th>
+<th class="p-4 text-xs font-medium uppercase tracking-wider text-[#617589] dark:text-gray-400">Status</th>
+<th class="p-4 text-xs font-medium uppercase tracking-wider text-[#617589] dark:text-gray-400">Contact</th>
+<th class="p-4 text-xs font-medium uppercase tracking-wider text-[#617589] dark:text-gray-400">Family Role</th>
+<th class="p-4 text-xs font-medium uppercase tracking-wider text-[#617589] dark:text-gray-400">Last Visit</th>
+<th class="p-4 w-10"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e5e7eb] dark:divide-gray-700">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+<td class="p-4">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center bg-no-repeat" data-alt="Profile picture of Sarah Johnson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBZvobFGg-suLq2l95msoVBit1s_a7V0-bgCHJubwpuwTcP52H2p_sFwOvsNYeri9qwX7UNbI47KQJk-7adQYKRGbIoH8CZIqwCG7p5tVspxrzTFjaFs2m0NWPoz9xpfwA-WkAcHk5JwnemWiDU8f-kWs2bdjAq7xtn5MP4eLL3SydGg-MvbbVktolTLGgKqY4fuw2EyFcGhUBYBF7FfngD_oTW5UTE0uTK6yZpug1d9sMNnwQRhnp9x4v22KoPJuoQCOhQrUi1DTg");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111418] dark:text-white">Sarah Johnson</span>
+<span class="text-xs text-gray-500">Joined Oct 2021</span>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/30 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:text-green-300">
+                                                    Member
+                                                </span>
+</td>
+<td class="p-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-sm text-[#111418] dark:text-gray-200">
+<span class="material-symbols-outlined text-[16px] text-gray-400">mail</span>
+                                                        sarah.j@example.com
+                                                    </div>
+<div class="flex items-center gap-2 text-sm text-gray-500">
+<span class="material-symbols-outlined text-[16px] text-gray-400">call</span>
+                                                        (555) 123-4567
+                                                    </div>
+</div>
+</td>
+<td class="p-4 text-sm text-[#111418] dark:text-gray-200">
+                                                Head of Household
+                                            </td>
+<td class="p-4 text-sm text-gray-500 dark:text-gray-400">
+                                                2 days ago
+                                            </td>
+<td class="p-4">
+<button class="text-gray-400 hover:text-[#111418] dark:hover:text-white transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+<td class="p-4">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center bg-no-repeat" data-alt="Profile picture of Michael Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDB9IUCRoMCROwP5wdVwU05LemLXl05XaA0FJn5Mwhaupg9Yw-BlUwkJTR3AoQE8KmLDYyFy18dUZ8TvNMGbaYKAPIxaI-ROsKJ93eV8TGggk2FNszV-58UOqpiAJTQTp4t0cgfEqctmxGIfybl4kxpm8YOlb5PzhYFL5YZiK1n4dylJfTAu9UX1gdbHEbvAAGazt6LHqwcchfQFw2NdQ9g_PaMgNFmSMiFyJNctkklXcmD0_pdhTztCx1kIl0UspStgA7GwuWKlqw");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111418] dark:text-white">Michael Chen</span>
+<span class="text-xs text-gray-500">Added yesterday</span>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center rounded-full bg-blue-100 dark:bg-blue-900/30 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:text-blue-300">
+                                                    Visitor
+                                                </span>
+</td>
+<td class="p-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-sm text-[#111418] dark:text-gray-200">
+<span class="material-symbols-outlined text-[16px] text-gray-400">mail</span>
+                                                        m.chen@example.com
+                                                    </div>
+</div>
+</td>
+<td class="p-4 text-sm text-[#111418] dark:text-gray-200">
+                                                Individual
+                                            </td>
+<td class="p-4 text-sm text-gray-500 dark:text-gray-400">
+                                                Sunday
+                                            </td>
+<td class="p-4">
+<button class="text-gray-400 hover:text-[#111418] dark:hover:text-white transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+<td class="p-4">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-primary dark:text-blue-200 font-bold text-sm">
+                                                        ED
+                                                    </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-[#111418] dark:text-white">Emily Davis</span>
+<span class="material-symbols-outlined text-[14px] text-orange-500" title="Minor">child_care</span>
+</div>
+<span class="text-xs text-gray-500">Age: 14</span>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/30 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:text-green-300">
+                                                    Member
+                                                </span>
+</td>
+<td class="p-4">
+<div class="flex flex-col gap-1">
+<span class="text-xs text-gray-400 italic">No direct contact info</span>
+</div>
+</td>
+<td class="p-4 text-sm text-[#111418] dark:text-gray-200">
+                                                Child
+                                            </td>
+<td class="p-4 text-sm text-gray-500 dark:text-gray-400">
+                                                Sunday
+                                            </td>
+<td class="p-4">
+<button class="text-gray-400 hover:text-[#111418] dark:hover:text-white transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+<td class="p-4">
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center bg-no-repeat" data-alt="Profile picture of Robert Wilson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAwPh6Q3OUseoDNsM5YMcwoROdWvY3KpHQbQCyOEw7jAuAgOLtL8sMwbpQRSnQjDeLekL9uUCKjV7a_56mX5dronslHI0NoM182gdg8fMzkHayZjxDcGm-XrNzMPkEemAlbsL1ZNAqToCqBe9q3n0b39vWz3z16VtaEGp6BIdSMOudaiDpbD8S5E8UxCWym_jGQAfFq4sOyyR4X8p0p7ANcvImz795NCtKxQhpYRjxVn3CHo1pz9hcz0PE3b-0hx9Oz9_bm0uSbl2k");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111418] dark:text-white">Robert Wilson</span>
+<span class="text-xs text-gray-500">Joined 2018</span>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center rounded-full bg-gray-100 dark:bg-gray-700 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:text-gray-300">
+                                                    Inactive
+                                                </span>
+</td>
+<td class="p-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-sm text-[#111418] dark:text-gray-200">
+<span class="material-symbols-outlined text-[16px] text-gray-400">mail</span>
+                                                        r.wilson@example.com
+                                                    </div>
+</div>
+</td>
+<td class="p-4 text-sm text-[#111418] dark:text-gray-200">
+                                                Spouse
+                                            </td>
+<td class="p-4 text-sm text-gray-500 dark:text-gray-400">
+                                                3 months ago
+                                            </td>
+<td class="p-4">
+<button class="text-gray-400 hover:text-[#111418] dark:hover:text-white transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-[#f0f2f4] dark:border-gray-700 p-4">
+<div class="text-sm text-gray-500 dark:text-gray-400">
+                                    Showing <span class="font-medium text-[#111418] dark:text-white">1</span> to <span class="font-medium text-[#111418] dark:text-white">10</span> of <span class="font-medium text-[#111418] dark:text-white">1,240</span> results
+                                </div>
+<div class="flex gap-2">
+<button class="rounded-lg border border-[#e5e7eb] dark:border-gray-600 px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50" disabled="">Previous</button>
+<button class="rounded-lg border border-[#e5e7eb] dark:border-gray-600 px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800">Next</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</body></html>

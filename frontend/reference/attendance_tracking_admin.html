@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Attendance Tracking (Admin)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 text-slate-800">
+    <div class="min-h-screen flex">
+      <aside class="w-64 bg-white border-r">
+        <div class="p-4 font-bold text-xl">GraceChMS</div>
+        <nav class="px-3 py-2 space-y-1">
+          <a class="block px-3 py-2 rounded hover:bg-gray-100" href="#">Dashboard</a>
+          <a class="block px-3 py-2 rounded bg-blue-50 text-blue-700" href="#">Attendance</a>
+          <a class="block px-3 py-2 rounded hover:bg-gray-100" href="#">Reports</a>
+        </nav>
+      </aside>
+      <main class="flex-1 p-6">
+        <header class="flex items-center justify-between">
+          <h1 class="text-2xl font-semibold">Attendance Tracking</h1>
+          <div class="flex items-center gap-3">
+            <button class="px-3 py-2 bg-blue-600 text-white rounded">Export</button>
+            <button class="px-3 py-2 bg-slate-100 rounded">New Session</button>
+          </div>
+        </header>
+
+        <section class="mt-6 grid grid-cols-3 gap-4">
+          <div class="bg-white rounded p-4 shadow">
+            <h3 class="text-sm text-slate-500">This Service</h3>
+            <p class="text-2xl font-bold mt-2">412</p>
+          </div>
+          <div class="bg-white rounded p-4 shadow">
+            <h3 class="text-sm text-slate-500">Checked In</h3>
+            <p class="text-2xl font-bold mt-2">386</p>
+          </div>
+          <div class="bg-white rounded p-4 shadow">
+            <h3 class="text-sm text-slate-500">Volunteers</h3>
+            <p class="text-2xl font-bold mt-2">24</p>
+          </div>
+        </section>
+
+        <section class="mt-6 bg-white p-4 rounded shadow">
+          <h2 class="font-semibold">Recent Check-ins</h2>
+          <div class="mt-4 overflow-auto">
+            <table class="w-full text-left">
+              <thead class="text-sm text-slate-500">
+                <tr>
+                  <th class="p-2">Time</th>
+                  <th class="p-2">Name</th>
+                  <th class="p-2">Group</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-t"><td class="p-2">09:02</td><td class="p-2">Alexander</td><td class="p-2">Adults</td></tr>
+                <tr class="border-t"><td class="p-2">09:05</td><td class="p-2">Lydia</td><td class="p-2">Kids</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

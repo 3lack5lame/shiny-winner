@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Child Check-In Kiosk</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#111418] dark:text-white overflow-x-hidden antialiased">
+<div class="relative flex min-h-screen flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#dbe0e6] dark:border-[#2a3441] bg-white dark:bg-[#101922] px-6 py-4 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">church</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em] text-[#111418] dark:text-white">Grace Community Church</h2>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-blue-600 transition-colors">
+<span class="material-symbols-outlined mr-2 text-lg">help</span>
+<span class="truncate">Help</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 flex-col items-center py-8 px-4 sm:px-6 lg:px-8 pb-32">
+<div class="flex w-full max-w-[960px] flex-col gap-6">
+<!-- Progress Bar -->
+<div class="flex flex-col gap-3 rounded-xl bg-white dark:bg-[#1C2630] p-6 shadow-sm border border-[#dbe0e6] dark:border-[#2a3441]">
+<div class="flex items-center justify-between">
+<p class="text-[#111418] dark:text-white text-lg font-bold leading-normal">Step 2 of 3</p>
+<p class="text-[#617589] dark:text-gray-400 text-sm font-medium">Family Selection</p>
+</div>
+<div class="h-3 w-full rounded-full bg-[#dbe0e6] dark:bg-[#2a3441]">
+<div class="h-full w-1/2 rounded-full bg-primary"></div>
+</div>
+</div>
+<!-- Welcome Header -->
+<div class="flex flex-col gap-2 px-2">
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] text-[#111418] dark:text-white">
+                        Welcome, The Miller Family!
+                    </h1>
+<p class="text-[#617589] dark:text-gray-400 text-lg font-normal">
+                        Select the children you would like to check in for today's service.
+                    </p>
+</div>
+<!-- Family Profile Summary -->
+<div class="rounded-xl bg-white dark:bg-[#1C2630] p-6 shadow-sm border border-[#dbe0e6] dark:border-[#2a3441]">
+<div class="flex items-center gap-5">
+<div class="relative size-20 md:size-24 shrink-0 rounded-full bg-cover bg-center border-4 border-white dark:border-[#1C2630] shadow-md" data-alt="Happy family portrait of the Millers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTH3cS_zloQDQcEVVPs53JXQCxTtzYhjfTukn17bWa_YB90Rgx8naUDI2tM1simg4u2N6BIuLfhlXTHlGzkl40lkieCkCIZFbGDha6tUBlyPXjX5T6frmDBNRXo1h1teARpZG6qU3cBbs23WSvFd6TIc8krqgiufcw48y-QJM_TqmPqHGUM6TEG2TMEbBnCxrh3yg2RYOvLPWFWOu0-B4KHtupKJmuPCm57XELWLwWRhQPUNrQEoL98zY50l7mM7ZF8axb8uFTk78");'>
+<div class="absolute bottom-0 right-0 flex size-7 items-center justify-center rounded-full bg-green-500 ring-2 ring-white dark:ring-[#1C2630]">
+<span class="material-symbols-outlined text-white text-sm font-bold">check</span>
+</div>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-xl font-bold text-[#111418] dark:text-white">The Miller Family</p>
+<p class="text-[#617589] dark:text-gray-400 text-base">Registered Member • 4 Family Members</p>
+</div>
+</div>
+</div>
+<!-- Child Selection Grid -->
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+<!-- Child Card 1: Selected & Allergy Warning -->
+<label class="group relative flex cursor-pointer items-center gap-4 rounded-xl border-2 border-primary bg-primary/5 p-4 shadow-sm transition-all hover:bg-primary/10">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<div class="size-20 shrink-0 rounded-full bg-cover bg-center" data-alt="Portrait of Noah Miller, young boy" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCxMPYovZMQhWE2L20ZcPi_Rrlpa2zTKZSHiuq-TW1uN483LOgMEXrPM5b4fp3luQNsR4eSZZYqLxGAtNZcTDQhTdVFMVxAxtb9fHJqag4j_CGqipN0MK809OIJMmLqBz63oJLHjRURY61TaWb6dMMdpmAzzWpCXzt_GnrZFpUbbrFJEf6guv9Tjl0Pf59iF2HaSNWpEx-JdiZrRJInqTWsIHOxdUI8jBFcgmloM7lB5iG5fYmky7_iDCYqKOsro6xxYsWgzNqYucY");'>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-[#111418] dark:text-white">Noah Miller</h3>
+<div class="flex size-8 items-center justify-center rounded-full bg-primary text-white shadow-sm transition-transform peer-checked:scale-110">
+<span class="material-symbols-outlined">check</span>
+</div>
+</div>
+<p class="text-sm font-medium text-[#617589] dark:text-gray-400 mb-2">2nd Grade • Room 204</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 rounded bg-red-100 dark:bg-red-900/30 px-2 py-1 text-xs font-bold uppercase tracking-wide text-red-700 dark:text-red-400">
+<span class="material-symbols-outlined text-[14px]">medical_services</span>
+                                    Peanut Allergy
+                                </span>
+</div>
+</div>
+</label>
+<!-- Child Card 2: Selected -->
+<label class="group relative flex cursor-pointer items-center gap-4 rounded-xl border-2 border-primary bg-primary/5 p-4 shadow-sm transition-all hover:bg-primary/10">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<div class="size-20 shrink-0 rounded-full bg-cover bg-center" data-alt="Portrait of Emma Miller, young girl" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBT7C6btCUpcc6DKsUUG-3b1A3xG3yJpBRe8NrAfwTCnR8ufg8N2DpipgLqpVfg_tI880v_lGLnDbI7VupbGbwrK7qdlIut_CReVUJflRdQG0v9tikltmAfkz4NVotnlMV9VSqr6yqzK1Nlc0ppYUPAlw8SRqU0ulq48jSu0LxUaCSQ_Eq_8aGHWYyWy0Li2E7RqSAykYe6IrePNELLo4y_ItgQWtQNUQuhR53JzV9xFa8SwH1GxF8H8Q8vbPJtMMngh1ehRw-7qLs");'>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-[#111418] dark:text-white">Emma Miller</h3>
+<div class="flex size-8 items-center justify-center rounded-full bg-primary text-white shadow-sm transition-transform peer-checked:scale-110">
+<span class="material-symbols-outlined">check</span>
+</div>
+</div>
+<p class="text-sm font-medium text-[#617589] dark:text-gray-400 mb-2">Nursery • Room 101</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 rounded bg-green-100 dark:bg-green-900/30 px-2 py-1 text-xs font-bold uppercase tracking-wide text-green-700 dark:text-green-400">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                    No Allergies
+                                </span>
+</div>
+</div>
+</label>
+<!-- Child Card 3: Not Selected -->
+<label class="group relative flex cursor-pointer items-center gap-4 rounded-xl border border-[#dbe0e6] dark:border-[#2a3441] bg-white dark:bg-[#1C2630] p-4 shadow-sm transition-all hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-[#25303b]">
+<input class="peer sr-only" type="checkbox"/>
+<div class="relative size-20 shrink-0 rounded-full bg-cover bg-center opacity-70 group-hover:opacity-100 transition-opacity" data-alt="Portrait of Liam Miller, baby" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC45vUo5NzOB9Uyh5-gca3eEqAHK6SUwejccEZy8FKm06BOE6KfrbCQ44pE-qFVUfGvaD7QYFqR4_Lapo2_Opw6HstEC4VMOF8DZtQZKiDLzkYLJiOO7FMAtl0oH-255UE6Tmz_ZwpQkikpXjLZP-1OW0cPnaBAftybX1KiMCtwn5BKDlBCMhepY64fH0-GsAZbJfzRTa3PZohhYBCuCU4IanyALLOscJcMCOOSjI0-8bKAQv8HLHg6Iwcrpl2EebfRKauyMygFi1w");'>
+<!-- Overlay when not selected -->
+<div class="absolute inset-0 rounded-full bg-white/30 dark:bg-black/30"></div>
+</div>
+<div class="flex flex-1 flex-col">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-[#111418] dark:text-white group-hover:text-primary transition-colors">Liam Miller</h3>
+<div class="flex size-8 items-center justify-center rounded-full border-2 border-[#dbe0e6] bg-transparent text-transparent group-hover:border-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:text-white transition-all">
+<span class="material-symbols-outlined">check</span>
+</div>
+</div>
+<p class="text-sm font-medium text-[#617589] dark:text-gray-400 mb-2">Preschool • Room 105</p>
+</div>
+</label>
+<!-- Add Guest Card -->
+<button class="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-[#dbe0e6] dark:border-[#2a3441] bg-transparent p-4 transition-all hover:border-primary hover:bg-primary/5 group">
+<div class="flex size-12 items-center justify-center rounded-full bg-[#f0f2f4] dark:bg-[#2a3441] text-[#617589] group-hover:text-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-2xl">person_add</span>
+</div>
+<span class="text-base font-bold text-[#617589] dark:text-gray-400 group-hover:text-primary">Check-in Guest</span>
+</button>
+</div>
+<!-- Search for Another Child (Quick Add) -->
+<div class="mt-4 border-t border-[#dbe0e6] dark:border-[#2a3441] pt-6">
+<label class="flex flex-col gap-2">
+<p class="text-[#111418] dark:text-white text-base font-medium leading-normal">Need to add someone else?</p>
+<div class="flex w-full items-stretch rounded-xl shadow-sm">
+<input class="form-input flex-1 rounded-l-xl border border-[#dbe0e6] dark:border-[#2a3441] bg-white dark:bg-[#1C2630] py-3 px-4 text-[#111418] dark:text-white placeholder:text-[#617589] focus:border-primary focus:ring-0 text-lg" placeholder="Search by phone number or name..." value=""/>
+<button class="flex items-center justify-center rounded-r-xl bg-[#f0f2f4] dark:bg-[#2a3441] px-6 text-[#111418] dark:text-white border border-l-0 border-[#dbe0e6] dark:border-[#2a3441] hover:bg-gray-200 dark:hover:bg-[#34404b] transition-colors font-semibold">
+<span class="material-symbols-outlined mr-2">search</span>
+                                Find
+                            </button>
+</div>
+</label>
+</div>
+</div>
+</main>
+<!-- Sticky Footer Action Bar -->
+<footer class="fixed bottom-0 z-40 w-full border-t border-[#dbe0e6] dark:border-[#2a3441] bg-white dark:bg-[#101922] p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+<div class="mx-auto flex max-w-[960px] items-center justify-between gap-4">
+<button class="flex h-14 min-w-[120px] cursor-pointer items-center justify-center rounded-xl bg-transparent px-6 text-[#617589] dark:text-gray-400 text-lg font-bold hover:bg-gray-100 dark:hover:bg-[#1C2630] hover:text-[#111418] dark:hover:text-white transition-colors">
+                    Cancel
+                </button>
+<div class="flex flex-1 justify-end gap-4">
+<div class="hidden sm:flex flex-col items-end justify-center mr-2">
+<span class="text-xs font-medium text-[#617589] dark:text-gray-400 uppercase tracking-wider">Printing for</span>
+<span class="text-base font-bold text-[#111418] dark:text-white">2 Children</span>
+</div>
+<button class="flex h-14 w-full sm:w-auto min-w-[200px] cursor-pointer items-center justify-center gap-3 rounded-xl bg-primary px-8 text-white shadow-lg shadow-primary/30 transition-all hover:bg-blue-600 hover:scale-[1.02] active:scale-[0.98]">
+<span class="material-symbols-outlined text-2xl">print</span>
+<span class="text-lg font-bold">Print Labels</span>
+</button>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

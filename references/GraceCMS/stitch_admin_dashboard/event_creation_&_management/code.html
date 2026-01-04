@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event Creation &amp; Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white h-screen overflow-hidden flex">
+<!-- 1. Side Navigation -->
+<aside class="w-[280px] bg-white dark:bg-[#111a22] border-r border-gray-200 dark:border-gray-800 flex flex-col shrink-0 h-full overflow-y-auto hidden lg:flex">
+<div class="p-4 flex flex-col h-full justify-between">
+<div class="flex flex-col gap-6">
+<!-- Branding -->
+<div class="flex gap-3 px-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 shadow-sm" data-alt="Church Logo Abstract" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuAyUVV7qv32yWNbOrWjcjV-k5bVaSWES6xg7GM72a-Ya8nzNEnofxzVTzaRP27AStVE3SnL9hjxSo7Ina7Fz-ovCzjM9J5w7Xp3ZhSUxYwKrPE7mUxsAHxvbpGCIrGqQnEZze_Dq2KcIoQqCeYgQDoM_a5Byi13lWK-0VUaovz1gNmx7UxqoRHKAdloovCOorB2fsExCaR14YuE-6GJ36pqWmbTwlSgBO94QN3pQWqJWDGTVuDV8p8rWo5G8O23z93_zL4NIGJAg");'></div>
+<div class="flex flex-col justify-center">
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-tight">Grace Community</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal">Admin Portal</p>
+</div>
+</div>
+<!-- Nav Links -->
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:text-primary dark:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-[24px] font-variation-settings-'FILL' 1">calendar_month</span>
+<span class="text-sm font-medium">Events</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">group</span>
+<span class="text-sm font-medium">Members</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">table_chart</span>
+<span class="text-sm font-medium">Groups</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">credit_card</span>
+<span class="text-sm font-medium">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</div>
+<!-- Bottom Profile -->
+<div class="flex items-center gap-3 px-3 py-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="User Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9b2pjg-FNBsRpi00-KdGtJRAhOuJHdmrdZr5etLuq64VccagnR7d4o1KJKeNCmi601uPORquw9hhNiyPvvoaDVhEuuSYG2GXKZ6sI6lK7j0h4Vda3MPUAnjGEL3EFAV1dueHAf-PjKAVDQXft671OQh0IzZMuKb9kYGpfxc7dWy8zTTIdaxegKuIBDZY8wX2OcOV4vb-aqX2dp9SVvZ5Ncq1BLBur0OuLqTiiYR2cHb1RUbPYyAS7bJdbkEBjVir486xgEQax8D8");'></div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-white text-sm font-medium">Rev. Thomas</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- 2. Events List Panel -->
+<div class="w-full md:w-[380px] lg:w-[420px] bg-white dark:bg-[#111a22] border-r border-gray-200 dark:border-gray-800 flex flex-col shrink-0 h-full z-10 shadow-lg md:shadow-none">
+<!-- List Header -->
+<div class="p-4 flex flex-col gap-4 border-b border-gray-100 dark:border-gray-800">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Events</h2>
+<!-- Create Button -->
+<button class="flex w-full cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-white gap-2 hover:bg-blue-600 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="text-sm font-bold tracking-wide">Create New Event</span>
+</button>
+<!-- Search -->
+<div class="flex w-full items-stretch rounded-lg h-10 bg-slate-100 dark:bg-slate-800">
+<div class="text-slate-500 dark:text-slate-400 flex items-center justify-center pl-3 pr-2">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full bg-transparent border-none text-sm text-slate-900 dark:text-white placeholder:text-slate-500 focus:ring-0" placeholder="Search events..."/>
+</div>
+<!-- Chips -->
+<div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+<button class="flex h-7 shrink-0 items-center justify-center px-3 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-medium transition-colors">All</button>
+<button class="flex h-7 shrink-0 items-center justify-center px-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Upcoming</button>
+<button class="flex h-7 shrink-0 items-center justify-center px-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Past</button>
+<button class="flex h-7 shrink-0 items-center justify-center px-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Drafts</button>
+</div>
+</div>
+<!-- List Content -->
+<div class="flex-1 overflow-y-auto p-2 space-y-1">
+<!-- Active Item -->
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 cursor-pointer">
+<div class="flex items-center justify-center rounded-lg bg-white dark:bg-blue-900/40 text-primary shrink-0 size-12 shadow-sm">
+<span class="material-symbols-outlined">church</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-slate-900 dark:text-white text-sm font-semibold truncate">Sunday Morning Service</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-slate-500 dark:text-slate-400 text-xs">Oct 22, 9:00 AM</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-green-600 dark:text-green-400 text-[10px] font-bold uppercase tracking-wider bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded">Published</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">chevron_right</span>
+</div>
+<!-- Inactive Item -->
+<div class="group flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer border border-transparent transition-colors">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 shrink-0 size-12">
+<span class="material-symbols-outlined">music_note</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-slate-900 dark:text-white text-sm font-medium truncate">Youth Worship Night</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-slate-500 dark:text-slate-400 text-xs">Oct 25, 7:00 PM</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-amber-600 dark:text-amber-400 text-[10px] font-bold uppercase tracking-wider bg-amber-100 dark:bg-amber-900/30 px-1.5 py-0.5 rounded">Draft</span>
+</div>
+</div>
+</div>
+<!-- Inactive Item -->
+<div class="group flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer border border-transparent transition-colors">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 shrink-0 size-12">
+<span class="material-symbols-outlined">volunteer_activism</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-slate-900 dark:text-white text-sm font-medium truncate">Community Food Drive</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-slate-500 dark:text-slate-400 text-xs">Nov 02, 10:00 AM</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-green-600 dark:text-green-400 text-[10px] font-bold uppercase tracking-wider bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded">Published</span>
+</div>
+</div>
+</div>
+<!-- Inactive Item -->
+<div class="group flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer border border-transparent transition-colors">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 shrink-0 size-12">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<p class="text-slate-900 dark:text-white text-sm font-medium truncate">Bible Study: Romans</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-slate-500 dark:text-slate-400 text-xs">Nov 05, 6:30 PM</span>
+<span class="size-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+<span class="text-green-600 dark:text-green-400 text-[10px] font-bold uppercase tracking-wider bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded">Published</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. Main Workspace (Right) -->
+<main class="flex-1 flex flex-col min-w-0 h-full bg-background-light dark:bg-background-dark overflow-hidden relative">
+<!-- Workspace Header -->
+<header class="flex items-center justify-between px-8 py-5 bg-white dark:bg-[#111a22] border-b border-gray-200 dark:border-gray-800 shrink-0">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<a class="hover:text-primary transition-colors" href="#">Events</a>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span>Edit Event</span>
+</div>
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white">Sunday Morning Service</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+                    Save Draft
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-white bg-primary hover:bg-blue-600 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+                    Publish Changes
+                </button>
+<button class="ml-2 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Tabs Navigation -->
+<div class="px-8 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111a22] shrink-0">
+<nav aria-label="Tabs" class="flex gap-8 -mb-px">
+<a class="border-b-2 border-primary py-4 px-1 text-sm font-semibold text-primary" href="#">
+                    Event Details
+                </a>
+<a class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-slate-500 hover:text-slate-700 hover:border-gray-300 dark:text-slate-400 dark:hover:text-slate-200" href="#">
+                    Registration &amp; Tickets
+                </a>
+<a class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-slate-500 hover:text-slate-700 hover:border-gray-300 dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-2" href="#">
+                    Volunteers
+                    <span class="bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] px-1.5 py-0.5 rounded-full">3</span>
+</a>
+<a class="border-b-2 border-transparent py-4 px-1 text-sm font-medium text-slate-500 hover:text-slate-700 hover:border-gray-300 dark:text-slate-400 dark:hover:text-slate-200 flex items-center gap-2" href="#">
+                    Facilities
+                    <span class="text-amber-500 text-[16px] material-symbols-outlined" title="Conflict Detected">warning</span>
+</a>
+</nav>
+</div>
+<!-- Main Form Scroll Area -->
+<div class="flex-1 overflow-y-auto p-8">
+<div class="max-w-4xl mx-auto flex flex-col gap-6 pb-20">
+<!-- Section: Basic Info -->
+<div class="bg-white dark:bg-[#151f28] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+<h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">info</span> Basic Information
+                    </h3>
+<div class="grid grid-cols-1 gap-6">
+<!-- Event Name -->
+<div class="col-span-1">
+<label class="block text-sm font-medium leading-6 text-slate-900 dark:text-slate-200 mb-2" for="event-name">Event Name</label>
+<input class="block w-full rounded-lg border-0 py-2.5 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-slate-800 sm:text-sm sm:leading-6" id="event-name" name="event-name" type="text" value="Sunday Morning Service"/>
+</div>
+<!-- Date & Time Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium leading-6 text-slate-900 dark:text-slate-200 mb-2" for="start-date">Date</label>
+<div class="relative">
+<input class="block w-full rounded-lg border-0 py-2.5 pl-3 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-slate-800 sm:text-sm sm:leading-6" id="start-date" name="start-date" type="date" value="2023-10-22"/>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-1">
+<label class="block text-sm font-medium leading-6 text-slate-900 dark:text-slate-200 mb-2" for="start-time">Start Time</label>
+<input class="block w-full rounded-lg border-0 py-2.5 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-slate-800 sm:text-sm sm:leading-6" id="start-time" name="start-time" type="time" value="09:00"/>
+</div>
+<div class="flex-1">
+<label class="block text-sm font-medium leading-6 text-slate-900 dark:text-slate-200 mb-2" for="end-time">End Time</label>
+<input class="block w-full rounded-lg border-0 py-2.5 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-slate-800 sm:text-sm sm:leading-6" id="end-time" name="end-time" type="time" value="10:30"/>
+</div>
+</div>
+</div>
+<!-- Recurrence -->
+<div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-dashed border-gray-300 dark:border-gray-700">
+<span class="material-symbols-outlined text-slate-500">update</span>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-900 dark:text-white">Repeat Weekly</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Every Sunday at 9:00 AM</p>
+</div>
+<button class="text-primary text-sm font-semibold hover:text-blue-600">Edit Rule</button>
+</div>
+</div>
+</div>
+<!-- Section: Media & Description -->
+<div class="bg-white dark:bg-[#151f28] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+<h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">image</span> Media &amp; Description
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Image Upload -->
+<div class="col-span-1">
+<label class="block text-sm font-medium leading-6 text-slate-900 dark:text-slate-200 mb-2">Cover Image</label>
+<div class="flex flex-col items-center justify-center w-full aspect-video rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-slate-800 cursor-pointer bg-cover bg-center relative group overflow-hidden" data-alt="Event cover image placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCT6PUO7b8Cx426AqDTVn8EcV5EzGu2yIDGGmZ4PHKxzPa78-guhQUQhDxn8Ze3_Uj3ty0SpYYmeSI8Sr7uqCM7j86KxAL2rb8t0jEZ7xvtTAotCywK3th2jawX4ff5oBmpw__vUy3nL4xGnDf-luWbpdeB-g2aVEvzhFwIrjlYQffrSvNb5mQ9hBIfyvIZNzFmSx9HTHrqjpt2Gm1TqMBZC_kJa_lunzXj6bZWMhPbO6kDKxWFmjUVRVZdsOBPrV6Pvb--8k7XBj4');">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-white text-sm font-medium flex items-center gap-2"><span class="material-symbols-outlined">edit</span> Change</span>
+</div>
+</div>
+<p class="mt-2 text-xs text-slate-500">Recommended size: 1200x600px</p>
+</div>
+<!-- Rich Text (Simulated) -->
+<div class="col-span-1 md:col-span-2">
+<label class="block text-sm font-medium leading-6 text-slate-900 dark:text-slate-200 mb-2">Description</label>
+<div class="w-full rounded-lg border border-gray-300 dark:border-gray-600 overflow-hidden shadow-sm dark:bg-slate-800">
+<!-- Toolbar -->
+<div class="flex gap-1 p-2 bg-gray-50 dark:bg-slate-700 border-b border-gray-300 dark:border-gray-600">
+<button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<div class="w-px h-6 bg-gray-300 dark:bg-gray-500 mx-1"></div>
+<button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+<button class="p-1 rounded hover:bg-gray-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300"><span class="material-symbols-outlined text-[18px]">link</span></button>
+</div>
+<textarea class="block w-full border-0 p-3 text-slate-900 dark:text-white focus:ring-0 sm:text-sm bg-transparent" placeholder="Join us for a time of worship and teaching..." rows="5">Join us this Sunday as we continue our series through the book of Romans. Children's ministry is available for ages 0-12. Coffee and fellowship to follow.</textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Location & Facilities -->
+<div class="bg-white dark:bg-[#151f28] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">location_on</span> Location &amp; Facilities
+                        </h3>
+<span class="inline-flex items-center rounded-md bg-red-50 dark:bg-red-900/30 px-2 py-1 text-xs font-medium text-red-700 dark:text-red-400 ring-1 ring-inset ring-red-600/10">1 Conflict Detected</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="col-span-1">
+<label class="block text-sm font-medium leading-6 text-slate-900 dark:text-slate-200 mb-2">Campus</label>
+<select class="block w-full rounded-lg border-0 py-2.5 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-slate-800 sm:text-sm sm:leading-6">
+<option>North Campus (Main)</option>
+<option>South Campus</option>
+<option>Online Only</option>
+</select>
+</div>
+<div class="col-span-1">
+<label class="block text-sm font-medium leading-6 text-slate-900 dark:text-slate-200 mb-2">Room / Resource</label>
+<select class="block w-full rounded-lg border-0 py-2.5 text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 focus:ring-2 focus:ring-inset focus:ring-primary dark:bg-slate-800 sm:text-sm sm:leading-6">
+<option>Main Sanctuary</option>
+<option>Fellowship Hall</option>
+<option>Youth Room</option>
+</select>
+</div>
+</div>
+<!-- Conflict Alert Component -->
+<div class="mt-4 rounded-lg bg-red-50 dark:bg-red-900/20 p-4 border border-red-100 dark:border-red-900/50">
+<div class="flex">
+<div class="flex-shrink-0">
+<span aria-hidden="true" class="material-symbols-outlined text-red-500">warning</span>
+</div>
+<div class="ml-3">
+<h3 class="text-sm font-medium text-red-800 dark:text-red-200">Scheduling Conflict: Youth Room</h3>
+<div class="mt-2 text-sm text-red-700 dark:text-red-300">
+<p>The <strong>Youth Room</strong> is already booked for "Sunday School Prep" from 8:30 AM to 9:30 AM.</p>
+</div>
+<div class="mt-4">
+<div class="-mx-2 -my-1.5 flex">
+<button class="rounded-md bg-red-50 dark:bg-red-900/30 px-2 py-1.5 text-sm font-medium text-red-800 dark:text-red-200 hover:bg-red-100 dark:hover:bg-red-900/50 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50" type="button">View Calendar</button>
+<button class="ml-3 rounded-md bg-red-50 dark:bg-red-900/30 px-2 py-1.5 text-sm font-medium text-red-800 dark:text-red-200 hover:bg-red-100 dark:hover:bg-red-900/50 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50" type="button">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Registration (Peek) -->
+<div class="bg-white dark:bg-[#151f28] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 opacity-75 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">confirmation_number</span> Registration Snapshot
+                        </h3>
+<button class="text-sm text-primary font-medium hover:underline">Edit Registration Settings</button>
+</div>
+<div class="mt-4 grid grid-cols-3 gap-4">
+<div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-gray-100 dark:border-gray-700 text-center">
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Type</p>
+<p class="text-base font-semibold text-slate-900 dark:text-white mt-1">Free</p>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-gray-100 dark:border-gray-700 text-center">
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Capacity</p>
+<p class="text-base font-semibold text-slate-900 dark:text-white mt-1">450 / 500</p>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-gray-100 dark:border-gray-700 text-center">
+<p class="text-xs text-slate-500 uppercase font-bold tracking-wider">Waitlist</p>
+<p class="text-base font-semibold text-green-600 mt-1">Enabled</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GraceChMS - Church Management Software</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white font-display overflow-x-hidden">
+<div class="relative flex flex-col min-h-screen w-full">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f4] dark:border-b-[#2a3441] bg-white dark:bg-[#101922] px-6 py-3 lg:px-40">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">GraceChMS</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#features">Features</a>
+<a class="text-[#111418] dark:text_gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#pricing">Pricing</a>
+<a class="text-[#111418] dark:text_gray-200 text-sm font-medium leading-normal hover:text-primary transition-colors" href="#testimonials">Testimonials</a>
+</div>
+<div class="flex gap-2">
+<button class="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f0f2f4] dark:bg-[#2a3441] text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#e0e2e4] dark:hover:bg-[#3a4451] transition-colors">
+<span class="truncate">Login</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors shadow-sm">
+<span class="truncate">Get Started</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="bg-white dark:bg-[#101922] px-6 py-12 lg:px-40 lg:py-20">
+<div class="layout-content-container flex flex-col max-w-[960px] mx-auto">
+<div class="@container">
+<div class="flex flex-col gap-10 lg:flex-row items-center">
+<!-- Hero Content -->
+<div class="flex flex-col gap-6 lg:w-1/2 text-left">
+<h1 class="text-[#111418] dark:text-white text-4xl lg:text-5xl font-black leading-tight tracking-[-0.033em]">
+                                Empowering Your Ministry, Simplifying Your Administration.
+                            </h1>
+<h2 class="text-[#617589] dark:text-gray-300 text-base lg:text-lg font-normal leading-relaxed">
+                                The all-in-one cloud platform for member engagement, secure child check-ins, and transparent financial stewardship.
+                            </h2>
+<div class="flex flex-wrap gap-3 mt-2">
+<button class="flex items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold tracking-[0.015em] hover:bg-blue-600 transition-colors shadow-md">
+                                    Request a Demo
+                                </button>
+<button class="flex items-center justify-center rounded-lg h-12 px-6 bg-[#f0f2f4] dark:bg-[#2a3441] text-[#111418] dark:text-white text-base font-bold tracking-[0.015em] hover:bg-[#e0e2e4] dark:hover:bg-[#3a4451] transition-colors">
+<span class="material-symbols-outlined mr-2 text-lg">play_circle</span>
+                                    Watch Video
+                                </button>
+</div>
+<div class="flex items-center gap-2 text-sm text-[#617589] dark:text-gray-400 mt-2">
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+<span>No credit card required</span>
+<span class="mx-2">•</span>
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+<span>14-day free trial</span>
+</div>
+</div>
+<!-- Hero Image -->
+<div class="w-full lg:w-1/2">
+<div class="relative w-full aspect-video bg-gradient-to-br from-blue-50 to-white dark:from-[#1a2530] dark:to-[#101922] rounded-xl border border-[#dbe0e6] dark:border-[#2a3441] shadow-xl overflow-hidden group">
+<!-- Abstract Dashboard Representation -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Dashboard interface displaying charts and member statistics" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyln3VNIrfhFvfhIaD7JhqjiO2GHs_fdQPwW2QahiG5sh4_OK1vUtrQlhOHLHAnS_1b0HRTo-aZLteiJYyVkR3A66-oa3zLs2q_W8_VtcmnxOq8A79XUg9OixlsswVVWnLU6y8STYWU3rvgNLbwZ5E0lS9KH-CmeH2O0ebDfSSKOvNXC3aMkqNWCQQxENsOV9zXiMwxwUmLIZ2hVVbpBoClY0lmLYHf3DMD9rT8eCl8fBTvWisSZo4kCUecrz-1yoaCW5qqNXiySY');">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent pointer-events-none"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof -->
+<section class="border-y border-[#f0f2f4] dark:border-[#2a3441] bg-[#fcfdfd] dark:bg-[#151f2b] py-8">
+<div class="px-6 lg:px-40 flex flex-col items-center gap-6 text-center">
+<p class="text-sm font-semibold text-[#617589] dark:text-gray-400 uppercase tracking-wider">Trusted by 500+ growing churches</p>
+<div class="flex flex-wrap justify-center gap-8 lg:gap-16 opacity-60 dark:opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+<!-- Placeholder Logos using Text/Shapes -->
+<div class="flex items-center gap-2 font-bold text-xl text-[#111418] dark:text-white"><span class="material-symbols-outlined text-primary">church</span> Cornerstone</div>
+<div class="flex items-center gap-2 font-bold text-xl text-[#111418] dark:text-white"><span class="material-symbols-outlined text-primary">spa</span> LifeSpring</div>
+<div class="flex items-center gap-2 font-bold text-xl text-[#111418] dark:text-white"><span class="material-symbols-outlined text-primary">volunteer_activism</span> GraceCom</div>
+<div class="flex items-center gap-2 font-bold text-xl text-[#111418] dark:text-white"><span class="material-symbols-outlined text-primary">light_mode</span> NewHope</div>
+</div>
+</div>
+</section>
